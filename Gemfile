@@ -6,6 +6,7 @@ gem 'railties'
 
 # DB
 gem 'mysql2'
+gem 'protected_attributes'
 
 # Server
 gem 'thin'

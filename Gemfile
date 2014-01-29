@@ -14,6 +14,7 @@ gem 'thin'
 gem 'sass-rails'
 gem 'haml'
 gem 'coffee-rails'
+gem 'bootstrap-sass'
 
 
 gem 'uglifier', '>= 1.0.3'

@@ -35,8 +35,8 @@ production:
   adapter: mysql2
   encoding: utf8
   reconnect: false
-  database: jobr
+  database: recruiter_production
   pool: 5
-  username: jobr10213
-  password: Jobr4Life
+  username: root
+  password:
   host: localhost

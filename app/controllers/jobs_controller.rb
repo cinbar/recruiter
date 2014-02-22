@@ -5,17 +5,17 @@ class JobsController < ApplicationController
   
   def create
     @job = Job.new
-    @job.title         = params[:jobs][:title]
-    @job.source_url    = params[:jobs][:source_url]
-    @job.source_id     = params[:jobs][:source_id]
-    @job.source_domain = params[:jobs][:source_domain]
-    @job.json          = params[:jobs][:json]
+    @job.title         = params[:job][:title]
+    @job.source_url    = params[:job][:source_url]
+    @job.source_id     = params[:job][:source_id]
+    @job.source_domain = params[:job][:source_domain]
+    @job.json          = params[:job][:json]
     begin
-      @job.save!
-      render :nothing, status: 200
+      @job.save
+      head :created
     rescue Exception => e
       Rails.logger.error("Failed to create job. #{e.message}")
-      render :nothing, status: 500
+      head :bad_request
     end
   end
 end

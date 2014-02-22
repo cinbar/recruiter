@@ -31,5 +31,5 @@ gem 'devise'
 gem 'figaro'
 
 group :test, :development do 
-  gem 'rspec' 
+  gem 'rspec-rails' 
 end

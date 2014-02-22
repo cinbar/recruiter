@@ -26,3 +26,10 @@ gem 'jquery-rails'
 
 # Account management
 gem 'devise'
+
+#  manage contstants for config/*.yml files
+gem 'figaro'
+
+group :test, :development do 
+  gem 'rspec' 
+end

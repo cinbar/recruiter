@@ -17,6 +17,12 @@ gem 'haml'
 gem 'coffee-rails'
 gem 'bootstrap-sass'
 
+# Pagination
+gem 'will_paginate', '~> 3.0'
+
+# forms
+gem 'formtastic'
+
 
 gem 'uglifier', '>= 1.0.3'
 gem 'better_errors'

@@ -5,7 +5,18 @@ class JobsController < ApplicationController
   def new
     @job = Job.new
   end
-  
+  def show 
+    @job = Job.find(params[:id])
+  end
+
+  def edit 
+    @job = Job.find(params[:id])
+     respond_to do |format|
+      format.html {
+        render(:layout => false) if request.xhr?
+      }
+    end
+  end
   def create
     @job = Job.new
     @job.title         = params[:job][:title]

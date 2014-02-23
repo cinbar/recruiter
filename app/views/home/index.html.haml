@@ -1,6 +1,9 @@
 %h1 Recruiter
 - if @current_user
   %p= "Welcome back, #{@current_user}"
-- else 
-  =link_to "Sign In", new_user_session_path
-=link_to "Sign Out", destroy_user_session_path(),method: :DELETE
+  %h2 Jobs
+  %p These are your listed jobs:
+  %ol
+    - @current_user.jobs.each do |job|
+      %li= job.title
+  =link_to "All Jobs", jobs_path

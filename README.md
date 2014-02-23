@@ -9,10 +9,13 @@ Make sure you are on ruby 2 locally
 Make sure your gems are up to date
 `$ bundle install`
 
+Rename 'config/database.yml.example' => '/config/database.yml'
+DO NOT check it into version control (should be in /.gitignore)
+
 Make sure your database is up to date (assumes your development database exists)
 `$ rake db:migrate`
 
-## Running Locally
+## Run Locally
 `$ bundle exec thin start`
 
 Visit `localhost:3000`

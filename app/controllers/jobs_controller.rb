@@ -13,8 +13,20 @@ class JobsController < ApplicationController
     @job = Job.find(params[:id])
      respond_to do |format|
       format.html {
-        render(:layout => false) if request.xhr?
+        render(layout: false) if request.xhr?
       }
+    end
+  end
+  def update
+    @job = Job.find(params[:id])
+    respond_to do |format|
+      if @job.update_attributes(params[:employee])
+        format.html { redirect_to jobs_path, notice: 'Job was successfully updated.' }
+        format.json { head :no_content }
+      else
+        format.html { render action: "edit" }
+        format.json { render json: @job.errors, status: :unprocessable_entity }
+      end
     end
   end
   def create

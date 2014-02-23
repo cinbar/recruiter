@@ -2,5 +2,5 @@
 %table
   =render partial: 'job', collection: @jobs
   
-= link_to "Add Job", new_job_path
+= link_to "Add Job", new_job_path, class: "btn-default btn"
 =will_paginate @jobs

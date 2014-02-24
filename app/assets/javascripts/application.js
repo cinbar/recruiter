@@ -13,12 +13,4 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
-
-$(document).ready(function(){
-	$(".job-container").on("click", function() {
-		var jobURL = "/jobs/" + $(this).attr("datajobid") + "/edit"
-		$.ajax({url:jobURL}).done(function(data){
-			$("#ajaxContainer").html(data)
-		})
-	});
-});
+//= require async_job

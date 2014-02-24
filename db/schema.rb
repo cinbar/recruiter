@@ -11,11 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140223195924) do
-
-  create_table "easy", primary_key: "Id", force: true do |t|
-    t.string "Name"
-  end
+ActiveRecord::Schema.define(version: 20140224222920) do
 
   create_table "jobs", force: true do |t|
     t.string   "title"
@@ -31,16 +27,21 @@ ActiveRecord::Schema.define(version: 20140223195924) do
     t.string   "position"
     t.string   "company"
     t.string   "location"
-    t.string   "tags"
+    t.string   "latitude"
+    t.string   "longitude"
+    t.text     "tags"
     t.string   "salary"
-    t.string   "description"
-    t.string   "connections"
+    t.text     "description"
+    t.text     "connections"
     t.string   "skills"
-  end
-
-  create_table "matches", primary_key: "match_id", force: true do |t|
-    t.integer "user_id"
-    t.integer "job_id"
+    t.string   "salary_min"
+    t.string   "salary_max"
+    t.string   "equity_min"
+    t.string   "equity_max"
+    t.string   "source_job_id"
+    t.string   "source_company_id"
+    t.datetime "source_created_at"
+    t.datetime "source_updated_at"
   end
 
   create_table "users", force: true do |t|

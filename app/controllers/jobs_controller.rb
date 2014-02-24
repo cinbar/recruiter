@@ -1,10 +1,10 @@
 class JobsController < ApplicationController
-  skip_before_filter :authenticate_user!, only: [:create]
   respond_to :json
   
   def new
     @job = Job.new
   end
+  
   def show 
     @job = Job.find(params[:id])
   end
@@ -17,6 +17,7 @@ class JobsController < ApplicationController
       }
     end
   end
+  
   def update
     @job = Job.find(params[:id])
     respond_to do |format|
@@ -29,12 +30,9 @@ class JobsController < ApplicationController
       end
     end
   end
+  
   def create
     Rails.logger.debug("Received job")
-    
-    #job = JSON.parse(params[:job])
-
-    #Rails.logger.debug("#{job}")
     @job = Job.new
     @job.title         = params[:job][:title]
     @job.company       = params[:job][:company]
@@ -47,19 +45,6 @@ class JobsController < ApplicationController
     @job.source_url    = params[:job][:source_url]
     @job.source_id     = params[:job][:source_id]
     @job.source_domain = params[:job][:source_domain]
-    # @job.title         = job["title"]
-    # @job.source_url    = job["source_url"]
-    # @job.source_id     = job["source_id"]
-    # @job.source_domain = job["source_domain"]
-    # @job.json          = job["json"]
-    # @job.company       = job["company"]
-    # @job.salary        = job["salary"]
-    # @job.location      = job["location"]
-    # @job.description   = job["description"]
-    # @job.hero_img      = job["hero_img"]
-    # @job.logo_img      = job["logo_img"]
-    # @job.tags          = job["tags"]
-
     @job.user_id = current_user.id if current_user
     begin
       @job.save!
@@ -80,6 +65,6 @@ class JobsController < ApplicationController
   end
   
   def index
-    @jobs = Job.paginate(:page => params[:page])
+    @jobs = Job.order("created_at DESC").paginate(:page => params[:page])
   end
 end

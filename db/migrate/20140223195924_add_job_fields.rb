@@ -6,10 +6,12 @@ class AddJobFields < ActiveRecord::Migration
 	add_column :jobs, :position, :string 
 	add_column :jobs, :company, :string
 	add_column :jobs, :location, :string
-	add_column :jobs, :tags, :string
+  add_column :jobs, :latitude, :string
+  add_column :jobs, :longitude, :string
+	add_column :jobs, :tags, :text
 	add_column :jobs, :salary, :string
-	add_column :jobs, :description, :string
-	add_column :jobs, :connections, :string
+	add_column :jobs, :description, :text
+	add_column :jobs, :connections, :text
 	add_column :jobs, :skills, :string
   end
   def down 
@@ -23,5 +25,7 @@ class AddJobFields < ActiveRecord::Migration
 	remove_column :jobs, :description
 	remove_column :jobs, :connections
 	remove_column :jobs, :skills
+	remove_column :jobs, :latitude
+	remove_column :jobs, :longitude
   end
 end

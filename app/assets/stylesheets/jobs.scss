@@ -1,6 +1,13 @@
 .job-container {
+	position: relative;
 	border: 1px solid #CCC;
 	&:hover {
 		background-color: rgba(0,128,128,0.2);
+	}
+	img {
+		position: absolute;
+		max-width: 50px;
+		top: 5px;
+		right: 10px;
 	}
 }

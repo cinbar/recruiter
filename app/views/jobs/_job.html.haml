@@ -1,4 +1,8 @@
 %tr
-  %td= job.title
-  %td= job.source_id
-  %td= job.json
+ %td
+  %div.job-container{datajobid: job.id }
+   %div.bold= job.title 
+   %div= job.company
+   %div.italic= job.salary
+   %div= job.source_id
+   %div= job.json

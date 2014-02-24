@@ -2,5 +2,6 @@
 %table
   =render partial: 'job', collection: @jobs
   
-= link_to "Add Job", new_job_path
+%div#ajaxContainer
+= link_to "Add Job", new_job_path, class: "btn-success btn"
 =will_paginate @jobs

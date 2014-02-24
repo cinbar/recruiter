@@ -19,3 +19,5 @@ Make sure your database is up to date (assumes your development database exists)
 `$ bundle exec thin start`
 
 Visit `localhost:3000`
+
+## DATABASE - currently hooked to production; be careful!

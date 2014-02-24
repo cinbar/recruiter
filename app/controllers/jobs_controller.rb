@@ -30,8 +30,14 @@ class JobsController < ApplicationController
     end
   end
   def create
+    Rails.logger.debug("Received job")
+    
+    job = JSON.parse(params[:job])
+
+    Rails.logger.debug("#{job}")
     @job = Job.new
-    @job.title         = params[:job][:title]
+
+    @job.title         = job["title"]
     @job.company       = params[:job][:company]
     @job.salary        = params[:job][:salary]
     @job.location      = params[:job][:location]
@@ -39,10 +45,17 @@ class JobsController < ApplicationController
     @job.hero_img      = params[:job][:hero_img]
     @job.logo_img      = params[:job][:logo_img]
     @job.tags          = params[:job][:tags]
-    @job.source_url    = params[:job][:source_url]
-    @job.source_id     = params[:job][:source_id]
-    @job.source_domain = params[:job][:source_domain]
-    @job.json          = params[:job][:json]
+    # @job.source_url    = params[:job][:source_url]
+    # @job.source_id     = params[:job][:source_id]
+    # @job.source_domain = params[:job][:source_domain]
+    # @job.json          = params[:job][:json]
+
+
+    @job.source_url    = job["source_url"]
+    @job.source_id     = job["source_id"]
+    @job.source_domain = job["source_domain"]
+    @job.json          = job["json"]
+
     @job.user_id = current_user.id if current_user
     begin
       @job.save!

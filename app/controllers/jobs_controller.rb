@@ -38,23 +38,17 @@ class JobsController < ApplicationController
     @job = Job.new
 
     @job.title         = job["title"]
-    @job.company       = params[:job][:company]
-    @job.salary        = params[:job][:salary]
-    @job.location      = params[:job][:location]
-    @job.description   = params[:job][:description]
-    @job.hero_img      = params[:job][:hero_img]
-    @job.logo_img      = params[:job][:logo_img]
-    @job.tags          = params[:job][:tags]
-    # @job.source_url    = params[:job][:source_url]
-    # @job.source_id     = params[:job][:source_id]
-    # @job.source_domain = params[:job][:source_domain]
-    # @job.json          = params[:job][:json]
-
-
     @job.source_url    = job["source_url"]
     @job.source_id     = job["source_id"]
     @job.source_domain = job["source_domain"]
     @job.json          = job["json"]
+    @job.company       = job["company"]
+    @job.salary        = job["salary"]
+    @job.location      = job["location"]
+    @job.description   = job["description"]
+    @job.hero_img      = job["hero_img"]
+    @job.logo_img      = job["logo_img"]
+    @job.tags          = job["tags"]
 
     @job.user_id = current_user.id if current_user
     begin

@@ -12,5 +12,5 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require_tree .
 //= require async_job
+//= require_tree .

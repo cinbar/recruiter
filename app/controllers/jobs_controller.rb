@@ -20,7 +20,7 @@ class JobsController < ApplicationController
   def update
     @job = Job.find(params[:id])
     respond_to do |format|
-      if @job.update_attributes(params[:employee])
+      if @job.update_attributes(params[:job])
         format.html { redirect_to jobs_path, notice: 'Job was successfully updated.' }
         format.json { head :no_content }
       else
@@ -32,22 +32,34 @@ class JobsController < ApplicationController
   def create
     Rails.logger.debug("Received job")
     
-    job = JSON.parse(params[:job])
+    #job = JSON.parse(params[:job])
 
-    Rails.logger.debug("#{job}")
+    #Rails.logger.debug("#{job}")
     @job = Job.new
-    @job.title         = job["title"]
-    @job.source_url    = job["source_url"]
-    @job.source_id     = job["source_id"]
-    @job.source_domain = job["source_domain"]
-    @job.json          = job["json"]
-    @job.company       = job["company"]
-    @job.salary        = job["salary"]
-    @job.location      = job["location"]
-    @job.description   = job["description"]
-    @job.hero_img      = job["hero_img"]
-    @job.logo_img      = job["logo_img"]
-    @job.tags          = job["tags"]
+    @job.title         = params[:job][:title]
+    @job.company       = params[:job][:company]
+    @job.salary        = params[:job][:salary]
+    @job.location      = params[:job][:location]
+    @job.description   = params[:job][:description]
+    @job.hero_img      = params[:job][:hero_img]
+    @job.logo_img      = params[:job][:logo_img]
+    @job.tags          = params[:job][:tags]
+    @job.source_url    = params[:job][:source_url]
+    @job.source_id     = params[:job][:source_id]
+    @job.source_domain = params[:job][:source_domain]
+    # @job.title         = job["title"]
+    # @job.source_url    = job["source_url"]
+    # @job.source_id     = job["source_id"]
+    # @job.source_domain = job["source_domain"]
+    # @job.json          = job["json"]
+    # @job.company       = job["company"]
+    # @job.salary        = job["salary"]
+    # @job.location      = job["location"]
+    # @job.description   = job["description"]
+    # @job.hero_img      = job["hero_img"]
+    # @job.logo_img      = job["logo_img"]
+    # @job.tags          = job["tags"]
+
     @job.user_id = current_user.id if current_user
     begin
       @job.save!

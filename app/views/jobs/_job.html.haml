@@ -2,7 +2,8 @@
  %td
   %div.job-container{datajobid: job.id }
    %div.bold= job.title 
-   %div= job.company
+   %div.courier= job.company
    %div.italic= job.salary
-   %div= job.source_id
-   %div= job.json
+   %img{src: job.logo_img}
+   //%div= job.source_id
+   //%div= job.json

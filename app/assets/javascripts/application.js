@@ -13,7 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
-
+// ajax form for updating jobs.
 $(document).ready(function(){
 	$(".job-container").on("click", function() {
 		var jobURL = "/jobs/" + $(this).attr("datajobid") + "/edit"

@@ -20,7 +20,7 @@ class JobsController < ApplicationController
   def update
     @job = Job.find(params[:id])
     respond_to do |format|
-      if @job.update_attributes(params[:employee])
+      if @job.update_attributes(params[:job])
         format.html { redirect_to jobs_path, notice: 'Job was successfully updated.' }
         format.json { head :no_content }
       else

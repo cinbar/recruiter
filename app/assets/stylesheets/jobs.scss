@@ -1,0 +1,6 @@
+.job-container {
+	border: 1px solid #CCC;
+	&:hover {
+		background-color: rgba(0,128,128,0.2);
+	}
+}

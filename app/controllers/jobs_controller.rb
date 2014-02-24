@@ -5,7 +5,30 @@ class JobsController < ApplicationController
   def new
     @job = Job.new
   end
-  
+  def show 
+    @job = Job.find(params[:id])
+  end
+
+  def edit 
+    @job = Job.find(params[:id])
+     respond_to do |format|
+      format.html {
+        render(layout: false) if request.xhr?
+      }
+    end
+  end
+  def update
+    @job = Job.find(params[:id])
+    respond_to do |format|
+      if @job.update_attributes(params[:job])
+        format.html { redirect_to jobs_path, notice: 'Job was successfully updated.' }
+        format.json { head :no_content }
+      else
+        format.html { render action: "edit" }
+        format.json { render json: @job.errors, status: :unprocessable_entity }
+      end
+    end
+  end
   def create
     Rails.logger.debug("Received job")
     
@@ -13,11 +36,26 @@ class JobsController < ApplicationController
 
     Rails.logger.debug("#{job}")
     @job = Job.new
+
     @job.title         = job["title"]
+    @job.company       = params[:job][:company]
+    @job.salary        = params[:job][:salary]
+    @job.location      = params[:job][:location]
+    @job.description   = params[:job][:description]
+    @job.hero_img      = params[:job][:hero_img]
+    @job.logo_img      = params[:job][:logo_img]
+    @job.tags          = params[:job][:tags]
+    # @job.source_url    = params[:job][:source_url]
+    # @job.source_id     = params[:job][:source_id]
+    # @job.source_domain = params[:job][:source_domain]
+    # @job.json          = params[:job][:json]
+
+
     @job.source_url    = job["source_url"]
     @job.source_id     = job["source_id"]
     @job.source_domain = job["source_domain"]
     @job.json          = job["json"]
+
     @job.user_id = current_user.id if current_user
     begin
       @job.save!

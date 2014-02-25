@@ -1,13 +1,13 @@
 %div.container
-  %h1 All Jobs 
-  %p 
-    Currently Curating 
+  %h1 All Jobs  
+  %p  
+    Currently Curating  
     = @job_count
     jobs.
   %div.row
     %table.col-md-4
-    =render partial: 'job', collection: @jobs
-   
+      =render partial: 'job', collection: @jobs
+      
     %div#ajaxContainer.col-md-8
-  = link_to "Add Job", new_job_path, class: "btn-success btn"
-  = will_paginate @jobs
+  = link_to "Add Job",  new_job_path, class: "btn-success btn"
+  = will_paginate  @jobs

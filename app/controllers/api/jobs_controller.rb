@@ -12,7 +12,7 @@ class Api::JobsController < ApplicationController
     startup_data = job_data["startup"] if job
     
     all_tags = job_data["tags"]
-    skill_tags = all_tags.collect{|tag| tag["tag_type"] == "SkillTag" && tag["display_name"]}
+    skill_tags = all_tags.collect{|tag| tag["display_name"] if tag["tag_type"] == "SkillTag" && tag["display_name"]}
     location   = all_tags.collect{|tag| tag["tag_type"] == "LocationTag" && tag["name"]}.first
     
     @existing_job = Job.find_by_source_id_and_source_job_id_and_source_company_id(job["source_id"], job["source_job_id"], job["source_company_id"])
@@ -39,8 +39,8 @@ class Api::JobsController < ApplicationController
     @job.equity_max    = job_data["equity_max"]
     # kind of unneccesary given the above, but whatever:
     @job.salary        = "#{number_to_delimited(job_data["salary_min"], :delimiter => ',')} - #{number_to_delimited(job_data["salary_max"], :delimiter => ',')} : #{job_data["equity_min"]}%-#{job_data["equity_max"]}%"
-    @job.location      = location if location
-    @job.description   = job_data["description"] || startup_data["name"]
+    @job.location      = location
+    @job.description   = job_data["description"] || startup_data["description"]
     @job.hero_img      = job["hero_img"]
     @job.logo_img      = startup_data["thumb_url"]
     @job.tags          = skill_tags if skill_tags.any?

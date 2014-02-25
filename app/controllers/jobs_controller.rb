@@ -66,5 +66,6 @@ class JobsController < ApplicationController
   
   def index
     @jobs = Job.order("created_at DESC").paginate(:page => params[:page])
+    @job_count = Job.count
   end
 end

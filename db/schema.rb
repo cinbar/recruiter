@@ -11,7 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140225221843) do
+ActiveRecord::Schema.define(version: 20140226030938) do
+
+  create_table "easy", primary_key: "Id", force: true do |t|
+    t.string "Name"
+  end
 
   create_table "jobs", force: true do |t|
     t.string   "title"
@@ -27,12 +31,10 @@ ActiveRecord::Schema.define(version: 20140225221843) do
     t.string   "position"
     t.string   "company"
     t.string   "location"
-    t.string   "latitude"
-    t.string   "longitude"
-    t.text     "tags"
+    t.string   "tags"
     t.string   "salary"
-    t.text     "description"
-    t.text     "connections"
+    t.string   "description"
+    t.string   "connections"
     t.string   "skills"
     t.string   "salary_min"
     t.string   "salary_max"
@@ -46,19 +48,35 @@ ActiveRecord::Schema.define(version: 20140225221843) do
     t.string   "company_url"
   end
 
+  create_table "matches", primary_key: "match_id", force: true do |t|
+    t.integer "user_id"
+    t.integer "job_id"
+  end
+
   create_table "users", force: true do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
+    t.string   "email",                                     default: "", null: false
+    t.string   "encrypted_password",                        default: "", null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",                             default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "is_recruiter"
+    t.string   "linkedin_token"
+    t.string   "image_url"
+    t.string   "location"
+    t.string   "latitude"
+    t.string   "longitude"
+    t.string   "education_school"
+    t.string   "education_degree"
+    t.string   "industry"
+    t.string   "first_job"
+    t.text     "skills",                 limit: 2147483647
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

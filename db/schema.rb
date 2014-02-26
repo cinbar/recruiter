@@ -11,7 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140226050107) do
+ActiveRecord::Schema.define(version: 20140226053541) do
+
+  create_table "easy", primary_key: "Id", force: true do |t|
+    t.string "Name"
+  end
 
   create_table "jobs", force: true do |t|
     t.string   "title"
@@ -27,12 +31,10 @@ ActiveRecord::Schema.define(version: 20140226050107) do
     t.string   "position"
     t.string   "company"
     t.string   "location"
-    t.string   "latitude"
-    t.string   "longitude"
-    t.text     "tags"
+    t.string   "tags"
     t.string   "salary"
-    t.text     "description"
-    t.text     "connections"
+    t.string   "description"
+    t.string   "connections"
     t.string   "skills"
     t.string   "salary_min"
     t.string   "salary_max"
@@ -44,6 +46,11 @@ ActiveRecord::Schema.define(version: 20140226050107) do
     t.datetime "source_updated_at"
     t.integer  "company_rank"
     t.string   "company_url"
+  end
+
+  create_table "matches", primary_key: "match_id", force: true do |t|
+    t.integer "user_id"
+    t.integer "job_id"
   end
 
   create_table "users", force: true do |t|
@@ -72,6 +79,7 @@ ActiveRecord::Schema.define(version: 20140226050107) do
     t.text     "skills",                 limit: 2147483647
     t.string   "first_name"
     t.string   "last_name"
+    t.string   "linkedin_user_id"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

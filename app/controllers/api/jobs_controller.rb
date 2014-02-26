@@ -14,10 +14,10 @@ class Api::JobsController < ApplicationController
     job_tags = job_data["tags"]
     market_tags = startup_data["markets"]
     
-    skill_tags   = job_tags.reject!{|tag| tag["tag_type"] != "SkillTag"}.collect{|tag| tag["display_name"] if tag["display_name"].present?}
+    skill_tags   = job_tags.reject{|tag| tag["tag_type"] == "SkillTag"}.collect{|tag| tag["display_name"] if tag["display_name"].present?}
     market_tags  = market_tags.collect{|tag| tag["display_name"] if tag["display_name"].present?} if market_tags.present?
-    role         = job_tags.reject!{|tag| tag["tag_type"] != "RoleTag"}
-    location     = job_tags.reject!{|tag| tag["tag_type"] != "LocationTag"}
+    role         = job_tags.reject{|tag| tag["tag_type"] == "RoleTag"}
+    location     = job_tags.reject{|tag| tag["tag_type"] == "LocationTag"}
 
     @existing_job = Job.find_by_source_id_and_source_job_id_and_source_company_id(job["source_id"], job["source_job_id"], job["source_company_id"])
     if @existing_job

@@ -1,3 +1,4 @@
+# make iOS user model match mysql
 class AddApiColumnsToUser < ActiveRecord::Migration
 	def up 
 		add_column :users ,:is_recruiter, :bool

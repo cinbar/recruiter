@@ -38,6 +38,7 @@ gem 'figaro'
 
 group :test, :development do 
   gem 'rspec-rails' 
+  gem 'factory_girl'
 end
 
 group :production do

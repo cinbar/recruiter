@@ -43,7 +43,7 @@ class Api::JobsController < ApplicationController
       # kind of unneccesary given the above, but whatever:
       @job.salary        = "#{number_to_delimited(job_data["salary_min"], :delimiter => ',')} - #{number_to_delimited(job_data["salary_max"], :delimiter => ',')} : #{job_data["equity_min"]}%-#{job_data["equity_max"]}%"
       @job.location      = location.first.fetch("display_name", {}) if location && location.any?
-      @job.description   = Job.escape_string("#{job_data["description"] || startup_data["product_desc"]}")
+      @job.description   = Job.sanitize("#{job_data["description"] || startup_data["product_desc"]}")
       @job.company_rank  = startup_data["quality"]
       @job.company_url   = startup_data["company_url"]
       @job.hero_img      = job["hero_img"]

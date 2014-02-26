@@ -17,7 +17,6 @@ class Api::UsersController < ApplicationController
 		rescue Exception => ex
 		  render json: "Api::UsersController: Error: #{ex.message}"
 		end
-		
 	end
 
 	def show 

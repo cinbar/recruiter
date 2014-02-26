@@ -1,4 +1,5 @@
 class JobsController < ApplicationController
+  skip_before_filter :authenticate_user!, only: [:create, :show, :index, :api_index]
   respond_to :json
   
   def new
@@ -63,9 +64,18 @@ class JobsController < ApplicationController
       format.json { head :created}
     end
   end
-  
+  def api_index
+    len = params[:limit] || 300
+    @jobs = Job.order("created_at DESC").limit(len)
+    respond_to do |format|
+      format.json { render json: @jobs}
+    end
+  end
   def index
     @jobs = Job.order("created_at DESC").paginate(:page => params[:page])
     @job_count = Job.count
+    respond_to do |format| 
+      format.json {render json: @jobs}
+    end
   end
 end

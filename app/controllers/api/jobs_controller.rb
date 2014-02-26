@@ -1,7 +1,7 @@
 class Api::JobsController < ApplicationController
   include ActiveSupport::NumberHelper  
   
-  skip_before_filter :authenticate_user!, only: [:create]
+  skip_before_filter :authenticate_user!, only: [:create, :show, :index]
   
   respond_to :json
   
@@ -68,5 +68,12 @@ class Api::JobsController < ApplicationController
         format.json { head :created}
       end
     end
+  end
+
+  def index 
+    @jobz = Job.find(10)
+  end
+  def show
+    @jobs = Match.find_by_user_id(params[:uid])
   end
 end

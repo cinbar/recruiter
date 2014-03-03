@@ -32,6 +32,7 @@ gem 'jquery-rails'
 
 # Account management
 gem 'devise'
+gem 'oauth2'
 
 #  manage contstants for config/*.yml files
 gem 'figaro'

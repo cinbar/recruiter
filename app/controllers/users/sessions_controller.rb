@@ -25,7 +25,7 @@ class Users::SessionsController < Devise::SessionsController
     #  we need to message our backend to see if there is a token in our db for this auth code
     #  this is done via ajax in the view
     uri = URI.parse(Recruiter.settings.validate_token_url)
-    @data = auth_params.to_json.html_safe
+    @data = {params: auth_params}.to_json.html_safe
     @url  = uri
   end
   

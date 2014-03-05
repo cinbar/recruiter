@@ -8,7 +8,8 @@ class Authorizer
         type: "POST",
         url: @url,
         crossDomain: true,
-        data: @data,
+        data: 
+          params: @data,
         dataType: 'json',
         success: (data, textStatus, jqXHR) =>
           alert("success")

@@ -1,8 +1,6 @@
 :javascript
   var a;
   function initAuth(){
-    alert("#{url}")
-    alert("#{data}")
-    a = new Authorizer("#{url}", "#{data}").authenticate();
+    a = new Authorizer("#{url}", "#{j data}").authenticate();
   }
   $(document).on('page:fetch', initAuth() );

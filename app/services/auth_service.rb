@@ -7,7 +7,7 @@ class AuthService
     def self.client
       OAuth2::Client.new(
         Recruiter.settings.linkedin_api_key,
-        Recruiter.settings.linkedin_api_secret,
+        nil,
         :authorize_url => "/uas/oauth2/authorization?response_type=code",
         :token_url => "/uas/oauth2/accessToken",
         :site => "https://www.linkedin.com"

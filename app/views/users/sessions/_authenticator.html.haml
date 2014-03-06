@@ -1,0 +1,6 @@
+:javascript
+  var a;
+  function initAuth(){
+    a = new Authorizer("#{url}", "#{j data}").authenticate();
+  }
+  $(document).on('page:fetch', initAuth() );

@@ -11,6 +11,9 @@ end
 
 module Recruiter
   class Application < Rails::Application
+    config.autoload_paths += %W(#{config.root}/lib)
+    config.autoload_paths += %W(#{config.root}/app/services)
+    
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
@@ -58,5 +61,7 @@ module Recruiter
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+
   end
+  require 'recruiter'
 end

@@ -11,7 +11,20 @@ class Authorizer
         data: @data,
         dataType: 'json',
         success: (data, textStatus, jqXHR) =>
-          alert("success")
+          inspect(data)
+        error: (jqXHR, textStatus, errorThrown) =>
+          console.log("Auth Error. #{jqXHR.responseText}")
+          
+  inspect: (token) ->
+    alert("got token, checking validity")
+    $.ajax
+        type: "POST",
+        url: "/identify",
+        data: 
+          access_token: token,
+        dataType: 'json',
+        success: (data, textStatus, jqXHR) =>
+          alert("Welcome")
         error: (jqXHR, textStatus, errorThrown) =>
           console.log("Auth Error. #{jqXHR.responseText}")
 

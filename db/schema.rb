@@ -13,10 +13,6 @@
 
 ActiveRecord::Schema.define(version: 20140226053541) do
 
-  create_table "easy", primary_key: "Id", force: true do |t|
-    t.string "Name"
-  end
-
   create_table "jobs", force: true do |t|
     t.string   "title"
     t.string   "source_domain"
@@ -31,10 +27,12 @@ ActiveRecord::Schema.define(version: 20140226053541) do
     t.string   "position"
     t.string   "company"
     t.string   "location"
-    t.string   "tags"
+    t.string   "latitude"
+    t.string   "longitude"
+    t.text     "tags"
     t.string   "salary"
-    t.string   "description"
-    t.string   "connections"
+    t.text     "description"
+    t.text     "connections"
     t.string   "skills"
     t.string   "salary_min"
     t.string   "salary_max"
@@ -46,11 +44,6 @@ ActiveRecord::Schema.define(version: 20140226053541) do
     t.datetime "source_updated_at"
     t.integer  "company_rank"
     t.string   "company_url"
-  end
-
-  create_table "matches", primary_key: "match_id", force: true do |t|
-    t.integer "user_id"
-    t.integer "job_id"
   end
 
   create_table "users", force: true do |t|

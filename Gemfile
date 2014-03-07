@@ -37,6 +37,9 @@ gem 'oauth2'
 #  manage contstants for config/*.yml files
 gem 'figaro'
 
+# for parsing
+gem 'nokogiri'
+
 group :test, :development do 
   gem 'rspec-rails' 
   gem 'factory_girl'

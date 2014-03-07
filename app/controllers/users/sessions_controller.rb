@@ -35,6 +35,8 @@ class Users::SessionsController < Devise::SessionsController
     if current_user
       Rails.logger.debug('Authentication successful.')
       redirect_to root_url
+    else
+      Rails.logger.debug('Authentication failed.')
     end
   end
   

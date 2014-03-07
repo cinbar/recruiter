@@ -40,8 +40,7 @@ class Api::UsersController < ApplicationController
 		  head :success
 		rescue Exception => ex
 		  render json: "Api::UsersController: error: #{ex.message}"
-	    end
-
+	  end
 	end
 
 

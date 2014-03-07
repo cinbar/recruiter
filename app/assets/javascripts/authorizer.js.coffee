@@ -19,8 +19,7 @@ class Authorizer
     $.ajax
         type: "POST",
         url: "/identify",
-        data: 
-          access_token: token,
+        data: token,
         dataType: 'json',
         success: (data, textStatus, jqXHR) =>
           alert("Welcome")

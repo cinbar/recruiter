@@ -4,7 +4,7 @@ Recruiter::Application.routes.draw do
     devise_for :users, :controllers => {:sessions => "users/sessions"}
     get  "validate" => "users/sessions#validate"
     post "authorize" => "users/sessions#authorize"
-    get "identify" => "users/sessions#identify"
+    post "identify" => "users/sessions#identify"
   end
   
   resources :jobs, only: [:create, :new, :index, :show, :edit, :update]

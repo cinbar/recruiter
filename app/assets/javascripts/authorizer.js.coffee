@@ -22,7 +22,7 @@ class Authorizer
         data: token,
         dataType: 'json',
         success: (data, textStatus, jqXHR) =>
-          alert("Welcome")
+          window.location = "/"
         error: (jqXHR, textStatus, errorThrown) =>
           console.log("Auth Error. #{jqXHR.responseText}")
 

@@ -33,6 +33,7 @@ class Users::SessionsController < Devise::SessionsController
   
   def identify
     if current_user
+      flash[:info] = "Login Successful"
       head :ok
     else
       head :error

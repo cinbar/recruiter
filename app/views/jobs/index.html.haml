@@ -5,10 +5,12 @@
     = @job_count
     jobs.
     = link_to "Add Job",  new_job_path, class: "btn-success btn"
+  = form_tag jobs_path, method: :GET do |f|
+    = text_field_tag :company, nil, placeholder: "Jobr"
+    = submit_tag "Search"
   %div.row
     %table.col-md-4
       =render partial: 'job', collection: @jobs
       
     %div#ajaxContainer.col-md-8
   
-  = will_paginate  @jobs

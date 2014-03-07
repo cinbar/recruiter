@@ -5,7 +5,7 @@ class JobsController < ApplicationController
     @job = Job.new
   end
   
-  def show 
+  def show
     @job = Job.find(params[:id])
   end
 
@@ -65,7 +65,11 @@ class JobsController < ApplicationController
   end
   
   def index
-    @jobs = Job.order("created_at DESC").paginate(:page => params[:page])
+    if params[:company]
+      @jobs = Job.where(company: params[:company].downcase).order("created_at DESC")
+    else
+      @jobs = Job.order("created_at DESC").limit(50)
+    end
     @job_count = Job.count
   end
 end

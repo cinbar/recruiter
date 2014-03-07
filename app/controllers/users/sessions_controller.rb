@@ -33,12 +33,9 @@ class Users::SessionsController < Devise::SessionsController
   
   def identify
     if current_user
-      Rails.logger.debug('Authentication successful.')
-      head :success
+      head :ok
     else
-      Rails.logger.debug('Authentication failed.')
       head :error
     end
   end
-  
 end

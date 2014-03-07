@@ -68,7 +68,7 @@ class JobsController < ApplicationController
     if params[:company]
       @jobs = Job.where(company: params[:company].downcase).order("created_at DESC")
     else
-      @jobs = Job.order("created_at DESC").limit(50)
+      @jobs = Job.order("created_at DESC").limit(100)
     end
     @job_count = Job.count
   end

@@ -12,6 +12,7 @@ class JobsController < ApplicationController
 
   def edit 
     @job = Job.find(params[:id])
+    @job.skill_ids = @job.skill_ids.gsub("~!~",",") unless @job.skill_ids == nil
      respond_to do |format|
       format.html {
         render(layout: false) if request.xhr?
@@ -21,6 +22,7 @@ class JobsController < ApplicationController
   
   def update
     @job = Job.find(params[:id])
+    params[:job][:skill_ids].gsub(/\s\,|\,\s,/,"/,").gsub(/\,/,"~!~")
     respond_to do |format|
       if @job.update_attributes(params[:job])
         format.html { redirect_to jobs_path, notice: 'Job was successfully updated.' }

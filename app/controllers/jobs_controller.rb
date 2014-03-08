@@ -82,7 +82,7 @@ class JobsController < ApplicationController
     if params[:company]
       @jobs = Job.where(company: params[:company].downcase)
     else
-      @jobs = Job.limit(100)
+      @jobs = Job.limit(2000)
     end
 
     @job_count = Job.count

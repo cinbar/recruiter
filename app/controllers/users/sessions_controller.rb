@@ -1,6 +1,7 @@
 require 'uri'
 require 'net/http'
 require 'json'
+
 class Users::SessionsController < Devise::SessionsController
   
   def new
@@ -17,6 +18,7 @@ class Users::SessionsController < Devise::SessionsController
   end
   
   def validate
+    Rails.logger.debug("validating")
     auth_params = {
       auth_code: params[:code], 
       state: params[:state], 
@@ -29,8 +31,12 @@ class Users::SessionsController < Devise::SessionsController
     @url  = uri
   end
   
-  def authorize
-    response = AuthService::LinkedIn.accept params
+  def identify
+    if current_user
+      flash[:info] = "Login Successful"
+      head :ok
+    else
+      head :error
+    end
   end
-  
 end

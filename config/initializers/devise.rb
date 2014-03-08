@@ -239,5 +239,7 @@ Devise.setup do |config|
   # config.omniauth_path_prefix = "/my_engine/users/auth"
   
   config.secret_key = 'af385107c662510eef6e4832220ff40e91511b3023ed5644810253f89d845f654f91d430abd1c70760cfdfe4913321de5e8aa0c6c0521ef067b1a3b57ab3ced9'
-  
+  config.warden do |manager| 
+     manager.default_strategies(:scope=>:user).unshift :linkedin 
+  end 
 end

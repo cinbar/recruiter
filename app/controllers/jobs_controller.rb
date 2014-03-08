@@ -44,7 +44,7 @@ class JobsController < ApplicationController
     @job.hero_img      = params[:job][:hero_img]
     @job.logo_img      = params[:job][:logo_img]
     @job.tags          = params[:job][:tags]
-    @job.updated       = params[:job][:updated]
+    @job.updated       = 0
     @job.owner         = current_user.id if current_user
     #@job.source_url    = params[:job][:source_url]
     #@job.source_id     = params[:job][:source_id]

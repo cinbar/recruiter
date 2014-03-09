@@ -14,5 +14,8 @@
 /log/*.log
 /tmp
 
+# Ignore public folder
+/public
+
 # Ignore application configuration
 /config/application.yml

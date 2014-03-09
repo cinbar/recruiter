@@ -10,7 +10,8 @@
     - if @current_user
       =link_to "Sign Out", destroy_user_session_path, method: :DELETE
     - else 
-      =link_to "Sign In", new_user_session_path
+      = form_tag  users_sessions_path do
+        = submit_tag "Sign in With LinkedIn"
     - flash.each do |name, msg|
       .site_notice{class: name != :notice && name}
         %h1= name.capitalize

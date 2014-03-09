@@ -61,7 +61,10 @@ module Recruiter
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
-
+    config.middleware.insert_after ActionDispatch::Flash, Warden::Manager do |manager|
+      manager.default_strategies :linkedin
+      manager.failure_app = UnauthorizedController
+    end
   end
   require 'recruiter'
 end

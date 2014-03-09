@@ -1,13 +1,11 @@
 Recruiter::Application.routes.draw do
   root :to => "home#index"
-
-  devise_scope :user do
-    devise_for :users, :controllers => {:sessions => "users/sessions"}
-    get  "validate" => "users/sessions#validate"
-    post "authorize" => "users/sessions#authorize"
-    post "identify" => "users/sessions#identify"
+  namespace :users do
+    resources :sessions, only: [:new, :create]
   end
-
+  get  "validate" => "users/sessions#validate"
+  post "authorize" => "users/sessions#authorize"
+  match "identify" => "users/sessions#identify", via: [:get, :post]
   resources :jobs, only: [:create, :new, :index, :show, :edit, :update]
   namespace "api" do
     resources :jobs, only: [:create]

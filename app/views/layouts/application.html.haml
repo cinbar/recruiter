@@ -7,10 +7,10 @@
     = csrf_meta_tags
   %body
     = link_to "Recruiter", root_url
-    - if @current_user
+    - if current_user
       =link_to "Sign Out", destroy_user_session_path, method: :DELETE
     - else 
-      = form_tag  users_sessions_path do
+      = form_tag users_sessions_path do
         = submit_tag "Sign in With LinkedIn"
     - flash.each do |name, msg|
       .site_notice{class: name != :notice && name}

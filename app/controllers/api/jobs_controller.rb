@@ -1,7 +1,7 @@
 class Api::JobsController < ApplicationController
   include ActiveSupport::NumberHelper  
   
-  skip_before_filter :authenticate_user!, only: [:create]
+  skip_before_filter :authenticate_user!, only: [:create, :show, :index]
   
   respond_to :json
   
@@ -73,10 +73,19 @@ class Api::JobsController < ApplicationController
       end
     end
   end
+# <<<<<<< HEAD
+
+#   def index 
+#     @jobz = Job.find(10)
+#   end
+#   def show
+#     @jobs = Match.find_by_user_id(params[:uid])
+# =======
   
   private
   def parse_description(desc)
     description  = desc.split("\n\n") if desc.present?
     description  = description.first if description.present?
+
   end
 end

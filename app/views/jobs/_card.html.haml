@@ -1,0 +1,12 @@
+.card
+  %img.hero{:height => "150", :width => "280", :src => @job.hero_img}
+  %img.logo{:height => "50", :width => "50", :src => @job.logo_img}
+  .position= @job.position
+  .company= @job.company
+  .location= @job.location
+  .type= @job.tags
+  .salary= @job.salary
+  .num-skills= @job.skill_ids.length
+  .skills Shared job skills
+  .num-contacts 3
+  .contacts Contacts work here

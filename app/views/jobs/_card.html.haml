@@ -6,7 +6,7 @@
   .location= @job.location
   .type= @job.tags
   .salary= @job.salary
-  .num-skills= @job.skill_ids.length
+  .num-skills= @job.skill_ids.count(',')+1
   .skills Shared job skills
   .num-contacts 3
   .contacts Contacts work here

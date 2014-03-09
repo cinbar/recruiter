@@ -2,10 +2,8 @@ require 'uri'
 require 'net/http'
 require 'json'
 
-class Users::SessionsController < Devise::SessionsController
-  
+class Users::SessionsController < ApplicationController
   def new
-    super
   end
 
   def create
@@ -32,6 +30,7 @@ class Users::SessionsController < Devise::SessionsController
   end
   
   def identify
+    authenticate!
     if current_user
       flash[:info] = "Login Successful"
       head :ok

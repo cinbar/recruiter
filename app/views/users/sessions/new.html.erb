@@ -1,7 +1,6 @@
 <h2>Sign in</h2>
 
-<%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
-  <div><%= f.submit "Sign in With LinkedIn" %></div>
+<%= form_tag(:url => validate_path) do %>
+  <div><%= submit_tag "Sign in With LinkedIn" %></div>
 <% end %>
 
-<%= render "users/shared/links" %>

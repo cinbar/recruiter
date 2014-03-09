@@ -22,12 +22,12 @@ class Api::JobsController < ApplicationController
 
     description  = parse_description(startup_data["product_desc"])
 
-    #  @existing_job = Job.find_by_source_id_and_source_job_id_and_source_company_id(job["source_id"], job["source_job_id"], job["source_company_id"])
-    # if @existing_job
-    #     Rails.logger.debug("Duplicate job detected, updating description")
-    #     @existing_job.update_attribute(:description, description)
-    #     head :success and return
-    #   else
+    @existing_job = Job.find_by_source_id_and_source_job_id_and_source_company_id(job["source_id"], job["source_job_id"], job["source_company_id"])
+    if @existing_job
+          Rails.logger.debug("Duplicate job detected, updating description")
+          @existing_job.update_attribute(:description, description)
+          head :success and return
+    end
     @job = Job.new
     # meta data 
     @job.source_url        = job["source_url"]

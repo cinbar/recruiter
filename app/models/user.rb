@@ -4,6 +4,13 @@ class User < ActiveRecord::Base
   def to_s
    email
   end
+  
+  def self.find_by_linked_in_id(id)
+    where("SELECT * from USERS 
+      WHERE linked_in_id = ?
+      LIMIT 1", id)
+  end
+    
 
   has_many :jobs
 end

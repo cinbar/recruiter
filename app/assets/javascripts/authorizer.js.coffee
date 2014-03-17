@@ -24,6 +24,6 @@ class Authorizer
         success: (data, textStatus, jqXHR) =>
           window.location = "/"
         error: (jqXHR, textStatus, errorThrown) =>
-          console.log("Auth Error. #{jqXHR.responseText}")
+          console.log("Inspect Auth Error. #{jqXHR.responseText}")
 
 (exports ? this).Authorizer = Authorizer

@@ -39,15 +39,15 @@ class AuthService
       end
       
       begin 
-        parsed_response  = Nokogiri::XML(res.body)
-        Rails.logger.error("#{parsed_response}")
+        parsed_response = Nokogiri::XML(res.body)
         li_uid = parsed_response.xpath("//person//id").try(:text)
+        Rails.logger.error(li_uid)
+        li_uid
       rescue Net::HTTPUnauthorized
          Rails.logger.error("fuck, unauthorized")
       rescue Net::HTTPForbidden
          Rails.logger.error("fuck, forbidden")
       end
-
     end
   end
 end

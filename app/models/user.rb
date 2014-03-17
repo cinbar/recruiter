@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
   end
   
   def self.find_by_linked_in_id(id)
-    where("SELECT * from USERS 
+    where("SELECT * from users 
       WHERE linked_in_id = ?
       LIMIT 1", id)
   end

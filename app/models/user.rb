@@ -11,5 +11,5 @@ class User < ActiveRecord::Base
   end
     
 
-  has_many :jobs
+  has_many :jobs, :foreign_key => :owner
 end

@@ -1,5 +1,5 @@
 GIT
-  remote: git@github.com:planas/warden-rails.git
+  remote: https://github.com/planas/warden-rails.git
   revision: 2b5a3bcbcda675a4b2a11d48ac7fe99f50897e2d
   specs:
     warden-rails (0.0.1)

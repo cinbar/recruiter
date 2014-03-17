@@ -64,6 +64,12 @@ module Recruiter
     config.middleware.insert_after ActionDispatch::Flash, Warden::Manager do |manager|
       manager.default_strategies :linkedin
       manager.failure_app = UnauthorizedController
+      manager.serialize_into_session do |user|
+        user.id
+      end
+      manager.serialize_from_session do |id|
+        User.get(id)
+      end
     end
   end
   require 'recruiter'

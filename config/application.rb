@@ -68,7 +68,7 @@ module Recruiter
         user.id
       end
       manager.serialize_from_session do |id|
-        User.get(id)
+        User.find(id)
       end
     end
   end

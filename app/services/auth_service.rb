@@ -23,9 +23,18 @@ class AuthService
 
     def self.identify token
       Rails.logger.debug("Identifying")
-      uri = URI.parse('http://api.linkedin.com/v1/people/~:(id)')
+      uri = URI.parse('https://api.linkedin.com/v1/people/~:(id)')
       uri.query = URI.encode_www_form({oauth2_access_token: token})
-      res = Net::HTTP.get_response(uri)
+
+      Rails.logger.debug(uri.request_uri)
+      
+      Net::HTTP.start(uri.host, uri.port,
+        :use_ssl => uri.scheme == 'https').start do |http|
+        request = Net::HTTP::Get.new uri.request_uri
+
+        res = http.request request
+      end
+      
       case res
         when Net::HTTPUnauthorized
            Rails.logger.error("fuck, unauthorized")

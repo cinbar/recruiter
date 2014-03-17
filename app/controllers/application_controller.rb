@@ -8,7 +8,12 @@ class ApplicationController < ActionController::Base
   end
 
   def current_user
-    warden.user
+    begin
+      warden.user
+    rescue Expection => ex
+      Rails.logger.error(ex.message )
+      Rails.logger.error(ex.backtrace )
+    end
   end
 
   def warden

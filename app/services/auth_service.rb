@@ -22,20 +22,16 @@ class AuthService
     end
 
     def self.identify token
-      Rails.logger.debug("Identifying #{token}")
-
+      Rails.logger.debug("Identifying")
       uri = URI.parse('http://api.linkedin.com/v1/people/~:(id)')
       uri.query = URI.encode_www_form({oauth2_access_token: token})
-      
-      http = Net::HTTP.new(uri.host, uri.port) 
-      
-      res = http.get_response(uri)
+      res = Net::HTTP.get_response(uri)
       case res
         when Net::HTTPUnauthorized
-           Rails.logger.error("fuck, unauthorized")
+           Rails.logger.debug("fuck, unauthorized")
           # Handle 401 Unauthorized response
         when Net::HTTPForbidden
-           Rails.logger.error("fuck, forbidden")
+           Rails.logger.debug("fuck, forbidden")
           # Handle 403 Forbidden response          
       end
       parsed_response  = Nokogiri::XML(res.body)

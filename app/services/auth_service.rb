@@ -26,13 +26,17 @@ class AuthService
       uri = URI.parse('https://api.linkedin.com/v1/people/~:(id)')
       uri.query = URI.encode_www_form({oauth2_access_token: token})
 
-      Rails.logger.debug(uri.request_uri)
       
       Net::HTTP.start(uri.host, uri.port,
-        :use_ssl => uri.scheme == 'https').start do |http|
+        :use_ssl => uri.scheme == 'https') do |http|
         request = Net::HTTP::Get.new uri.request_uri
 
+        Rails.logger.debug(request.body)
+        Rails.logger.debug(request.method)
+        Rails.logger.debug(request.path)
+        Rails.logger.debug(request.inspect)
         res = http.request request
+        Rails.logger.debug(res.body)
       end
       
       case res

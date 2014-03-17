@@ -5,5 +5,5 @@
   %p These are your listed jobs:
   %ol
     - @current_user.jobs.each do |job|
-      %li= job.title
+      %li=link_to job.position, job_path(job)
   =link_to "All Jobs", jobs_path, class: "btn btn-primary"

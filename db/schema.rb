@@ -60,7 +60,7 @@ ActiveRecord::Schema.define(version: 20140226053541) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "is_recruiter"
-    t.string   "linkedin_token"
+    t.string   "linked_in_id"
     t.string   "image_url"
     t.string   "location"
     t.string   "latitude"
@@ -76,6 +76,7 @@ ActiveRecord::Schema.define(version: 20140226053541) do
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["linked_in_id"], name: "index_users_on_linked_in_id", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
 end

@@ -11,7 +11,6 @@ class User < ActiveRecord::Base
     rescue ActiveRecord::RecordNotFound
       nil
     end
-    #ActiveRecord::Base.connection.execute("SELECT * from users WHERE linked_in_id = ? LIMIT 1", id)
   end
     
 

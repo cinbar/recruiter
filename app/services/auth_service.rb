@@ -16,7 +16,6 @@ class AuthService
     end
 
     def self.authorize
-      #Redirect your user in order to authenticate
       client.auth_code.authorize_url(:scope => 'r_fullprofile r_emailaddress r_network', 
                                                :state => STATE, 
                                                :redirect_uri => Recruiter.settings.linkedin_redirect_url)

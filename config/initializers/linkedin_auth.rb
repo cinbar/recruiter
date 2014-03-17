@@ -1,5 +1,5 @@
 class LinkedinStrategy < ::Warden::Strategies::Base
-  def valid?
+  def valid? 
     return false if request.get?
     token = params.fetch("access_token",{})
     !(token.blank?)
@@ -13,7 +13,7 @@ class LinkedinStrategy < ::Warden::Strategies::Base
       Rails.logger.error("Authentication Failure: #{ex.message}")
     end
     fail!("Could not get uid via linkedin") and return if li_uid.blank?    
-    user = User.find_by_linked_in_id(li_uid).try(:id)
+    user = User.find_by_linked_in_id(li_uid)
     if user.nil? 
       fail!("Authentication Failure") 
     else

@@ -33,6 +33,7 @@ gem 'jquery-rails'
 # Account management
 gem 'devise'
 gem 'oauth2'
+gem 'warden-rails', git: 'git@github.com:planas/warden-rails.git'
 
 #  manage contstants for config/*.yml files
 gem 'figaro'

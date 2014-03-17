@@ -33,7 +33,7 @@ class Users::SessionsController < ApplicationController
     authenticate!
     if current_user
       flash[:info] = "Login Successful"
-      head :ok
+      render json: true
     else
       head :error
     end

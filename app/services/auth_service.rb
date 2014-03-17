@@ -25,8 +25,8 @@ class AuthService
       Rails.logger.error("Identifying #{token}")
       uri = URI.parse('https://api.linkedin.com/v1/people/~:(id)')
       uri.query = URI.encode_www_form({oauth2_access_token: token})
-      Net::HTTP.start(uri.host, uri.port,
-        :use_ssl => uri.scheme == 'https') do |http|
+      li_uid = ""
+      Net::HTTP.start(uri.host, uri.port, :use_ssl => uri.scheme == 'https') do |http|
         request = Net::HTTP::Get.new uri.request_uri
         res = http.request request
         parsed_response = Nokogiri::XML(res.body)

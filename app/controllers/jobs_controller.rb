@@ -47,8 +47,8 @@ class JobsController < ApplicationController
     @job.logo_img      = params[:job][:logo_img]
     @job.skill_ids     = params[:job][:skill_ids].gsub(/\s\,|\,\s,/,"/,").gsub(/\,/,"~!~")
     @job.tags          = params[:job][:tags]
-    @job.updated       = 0
-    @job.owner         = current_user.id if current_user else 1
+    @job.updated       = Time.now.to_i
+    @job.owner         = 1 # will need to replace with: current_user.id if current_user else 1
     #@job.source_url    = params[:job][:source_url]
     #@job.source_id     = params[:job][:source_id]
     #@job.source_domain = params[:job][:source_domain]

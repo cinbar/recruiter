@@ -25,11 +25,10 @@ class Authorizer
         data: token,
         dataType: 'json',
         success: (data, textStatus, jqXHR) =>
-          if(data == "Error"){
+          if(data == "Error")
             console.log("Inspect Auth Error. #{jqXHR.responseText}")
-          }
-          else{
+          else
             window.location.href = "/"
-          }
+          
 
 (exports ? this).Authorizer = Authorizer

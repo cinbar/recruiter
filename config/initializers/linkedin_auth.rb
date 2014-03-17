@@ -1,6 +1,5 @@
 class LinkedinStrategy < ::Warden::Strategies::Base
-  def valid? 
-    Rails.logger.error("get request, go fuck yourself") if request.get?
+  def valid?
     return false if request.get?
     token = params.fetch("access_token",{})
     !(token.blank?)
@@ -8,15 +7,13 @@ class LinkedinStrategy < ::Warden::Strategies::Base
 
   def authenticate!
     oauth_token =  params.fetch("access_token")
-    Rails.logger.error("oauth_token: #{oauth_token} ")
     begin
       li_uid = AuthService::LinkedIn.identify(oauth_token)
-      Rails.logger.error("THIS IS IT:  #{li_uid}")
     rescue Exception => ex
-      Rails.logger.error("fuck my life: #{ex.message}")
+      Rails.logger.error("Authentication Failure: #{ex.message}")
     end
     fail!("Could not get uid via linkedin") and return if li_uid.blank?    
-    user = User.find_by_linked_in_id(li_uid)
+    user = User.find_by_linked_in_id(li_uid).try(:id)
     if user.nil? 
       fail!("Authentication Failure") 
     else

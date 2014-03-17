@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   end
 
   def current_user
-    warden.user
+    User.find_by_id(warden.user)
   end
 
   def warden

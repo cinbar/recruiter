@@ -28,7 +28,7 @@ class AuthService
       res = Net::HTTP.get_response(uri)
       case res
         when Net::HTTPUnauthorized
-           Rails.logger.debug("fuck, unauthorized")
+           Rails.logger.error("fuck, unauthorized")
           # Handle 401 Unauthorized response
         when Net::HTTPForbidden
            Rails.logger.debug("fuck, forbidden")

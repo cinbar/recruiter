@@ -1,8 +1,8 @@
 class LinkedinStrategy < ::Warden::Strategies::Base
   def valid? 
-    #return false if request.get?
-    # token = params.fetch("access_token",{})
-    # !(token.blank?)
+    return false if request.get?
+    token = params.fetch("access_token",{})
+    !(token.blank?)
   end 
 
   def authenticate!

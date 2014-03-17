@@ -22,7 +22,7 @@ class AuthService
     end
 
     def self.identify token
-      Rails.logger.debug("Identifying")
+      Rails.logger.debug("Identifying #{token}")
 
       uri = URI.parse('https://api.linkedin.com/v1/people/~:(id)')
       uri.query = URI.encode_www_form({oauth2_access_token: token})

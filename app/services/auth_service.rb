@@ -26,15 +26,11 @@ class AuthService
 
       uri = URI.parse('https://api.linkedin.com/v1/people/~:(id)')
       uri.query = URI.encode_www_form({oauth2_access_token: token})
-      port = Net::HTTP.https_default_port()
-      http = Net::HTTP.new(uri.host, port)
-      http.use_ssl = true
-      http.verify_mode = OpenSSL::SSL::VERIFY_NONE
       
-      request = Net::HTTP::Get.new(uri.request_uri)
-      Rails.logger.debug("#{uri.request_uri}")
-      res = http.request(request)
-
+      http = Net::HTTP.new(uri.host, uri.port)
+      http.use_ssl = true 
+      
+      res = http.get_response(uri)
       case res
         when Net::HTTPUnauthorized
            Rails.logger.debug("fuck, unauthorized")

@@ -30,6 +30,7 @@ class Users::SessionsController < ApplicationController
   end
   
   def identify
+    Rails.logger.debug("Identifying #{params}")
     authenticate!
     if current_user
       flash[:info] = "Login Successful"

@@ -19,6 +19,8 @@ class Authorizer
     $.ajax
         type: "POST",
         url: "/identify",
+        beforeSend: (xhr) => 
+          xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))
         data: token,
         dataType: 'json',
         success: (data, textStatus, jqXHR) =>

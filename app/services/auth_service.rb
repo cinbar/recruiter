@@ -32,6 +32,7 @@ class AuthService
       http.verify_mode = OpenSSL::SSL::VERIFY_NONE
       
       request = Net::HTTP::Get.new(uri.request_uri)
+      Rails.logger.debug("#{uri.request_uri}")
       res = http.request(request)
 
       case res

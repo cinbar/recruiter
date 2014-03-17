@@ -28,26 +28,12 @@ class AuthService
       Net::HTTP.start(uri.host, uri.port,
         :use_ssl => uri.scheme == 'https') do |http|
         request = Net::HTTP::Get.new uri.request_uri
-
-        Rails.logger.error(request.body)
-        Rails.logger.error(request.method)
-        Rails.logger.error(request.path)
-        Rails.logger.error(request.inspect)
         res = http.request request
-        Rails.logger.error(res.body)
-        Rails.logger.error(res)
-      end
-      
-      begin 
         parsed_response = Nokogiri::XML(res.body)
         li_uid = parsed_response.xpath("//person//id").try(:text)
-        Rails.logger.error(li_uid)
-        li_uid
-      rescue Net::HTTPUnauthorized
-         Rails.logger.error("fuck, unauthorized")
-      rescue Net::HTTPForbidden
-         Rails.logger.error("fuck, forbidden")
       end
+      Rails.logger.error(li_uid)
+      li_uid
     end
   end
 end

@@ -33,10 +33,10 @@ class AuthService
       res = http.get_response(uri)
       case res
         when Net::HTTPUnauthorized
-           Rails.logger.debug("fuck, unauthorized")
+           Rails.logger.error("fuck, unauthorized")
           # Handle 401 Unauthorized response
         when Net::HTTPForbidden
-           Rails.logger.debug("fuck, forbidden")
+           Rails.logger.error("fuck, forbidden")
           # Handle 403 Forbidden response          
       end
       parsed_response  = Nokogiri::XML(res.body)

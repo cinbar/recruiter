@@ -7,7 +7,11 @@ class LinkedinStrategy < ::Warden::Strategies::Base
 
   def authenticate!
     Rails.logger.debug("Authenticating")
-    li_uid = AuthService::LinkedIn.identify params.fetch("access_token")
+    begin
+      li_uid = AuthService::LinkedIn.identify params.fetch("access_token")
+    rescue 
+      Rails.logger.error("fuck my life")
+    end
     Rails.logger.debug("#{li_uid}")
     fail!("Could not get uid via linkedin") and return if li_uid.blank?    
     user = User.find_by_linked_in_id(li_uid)

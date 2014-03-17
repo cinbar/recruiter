@@ -29,12 +29,8 @@ class AuthService
         :use_ssl => uri.scheme == 'https') do |http|
         request = Net::HTTP::Get.new uri.request_uri
         res = http.request request
-
-        Rails.logger.error(res.body)
         parsed_response = Nokogiri::XML(res.body)
-        Rails.logger.error(parsed_response)
         li_uid = parsed_response.xpath("//person//id").try(:text)
-        Rails.logger.error(li_uid)
       end
       li_uid
     end

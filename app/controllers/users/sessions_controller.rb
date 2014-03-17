@@ -38,4 +38,9 @@ class Users::SessionsController < ApplicationController
       head :error
     end
   end
+  
+  def destroy
+    env['warden'].logout
+    redirect_to root_url
+  end
 end

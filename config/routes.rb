@@ -6,6 +6,7 @@ Recruiter::Application.routes.draw do
   get  "validate" => "users/sessions#validate"
   post "authorize" => "users/sessions#authorize"
   match "identify" => "users/sessions#identify", via: [:get, :post]
+  delete "sign_out" => "users/sessions#destroy"
   resources :jobs, only: [:create, :new, :index, :show, :edit, :update]
   namespace "api" do
     resources :jobs, only: [:create]

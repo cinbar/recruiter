@@ -35,6 +35,7 @@ class AuthService
         Rails.logger.error(request.inspect)
         res = http.request request
         Rails.logger.error(res.body)
+        Rails.logger.error(res)
       end
       
       case res
@@ -43,12 +44,14 @@ class AuthService
           # Handle 401 Unauthorized response
         when Net::HTTPForbidden
            Rails.logger.debug("fuck, forbidden")
-          # Handle 403 Forbidden response          
-      end
-      parsed_response  = Nokogiri::XML(res.body)
+          # Handle 403 Forbidden response  
+        else        
+          parsed_response  = Nokogiri::XML(res.body)
 
-      Rails.logger.debug("#{parsed_response}")
-      li_uid = parsed_response.xpath("//person//id").try(:text)
+          Rails.logger.debug("#{parsed_response}")
+          li_uid = parsed_response.xpath("//person//id").try(:text)
+      end
+
     end
   end
 end
